@@ -50,7 +50,13 @@ namespace Pangaautomaat
                 if ((rida = sr.ReadLine()) != null)
                 {
                     mitmeskasutaja++;
+                    if (rida.Substring(0,6) == kasutajanimi)
+                    {
+                        if (rida.Substring(7, 4) == kasutajapin.ToString())
+                        {
 
+                        }
+                    }
 
                 }
 
