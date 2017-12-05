@@ -12,7 +12,7 @@ namespace Pangaautomaat
         public static int kasutajapin { get; set;}
         public static int mitmeskasutaja { get; set; }
 
-        public static void Registreerimine()
+        public static bool Registreerimine()
         {
             ProoviUuesti:
             Console.WriteLine("Soovisite registreerida!\nSisestage kasutajanimi (Peab olema 6 tähte): ");
@@ -31,10 +31,10 @@ namespace Pangaautomaat
             kasutajapin = int.Parse(Console.ReadLine());
 
             System.IO.File.AppendAllText("../../kontolist.txt", kasutajanimi + " " + kasutajapin + Environment.NewLine);
-            return;
+            return true;
         }
 
-        public static void Logimine()
+        public static bool Logimine()
         {
             mitmeskasutaja = 0;
 
@@ -43,25 +43,40 @@ namespace Pangaautomaat
             Console.WriteLine("Sisestage oma PIN (4 numbrit)");
             kasutajapin = int.Parse(Console.ReadLine());
 
-            using (System.IO.StreamReader sr = new System.IO.StreamReader("../../kontolist.txt"))
+            try
             {
-                string rida;
-
-                if ((rida = sr.ReadLine()) != null)
+                using (System.IO.StreamReader sr = new System.IO.StreamReader("../../kontolist.txt"))
                 {
-                    mitmeskasutaja++;
-                    if (rida.Substring(0,6) == kasutajanimi)
+                    string rida;
+
+                    while ((rida = sr.ReadLine()) != null)
                     {
-                        if (rida.Substring(7, 4) == kasutajapin.ToString())
+                        mitmeskasutaja++;
+                        if (rida.Substring(0, 6) == kasutajanimi)
                         {
-
+                            if (rida.Substring(7, 4) == kasutajapin.ToString())
+                            {
+                                Console.WriteLine("Sisse logitud");
+                                return true;
+                            }
+                            else if (rida.Substring(7, 4) != kasutajapin.ToString())
+                            {
+                                Console.WriteLine("Vale parool.");
+                                return false;
+                            }
                         }
-                    }
 
+                    }
+                        Console.WriteLine("Kontot ei eksisteeri andmebaasis. ");
+                        return false;
+                    }
                 }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e);
+                return false;
 
             }
         }
-
     }
 }
