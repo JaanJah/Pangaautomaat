@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Pangaautomaat
     {
         public static int Raha(int mitmeskasutaja)
         {
-            string[] kasutajaRida = System.IO.File.ReadAllLines("../../kontolist.txt");
+            string[] kasutajaRida = File.ReadAllLines("../../kontolist.txt");
 
             int kogus = int.Parse(kasutajaRida[mitmeskasutaja].Substring(9));
             return kogus;
@@ -18,7 +19,7 @@ namespace Pangaautomaat
 
         public static bool RahaSisse(int summa, int mitmeskasutaja)
         {
-            string[] kasutajarida = System.IO.File.ReadAllLines("../../kontolist.txt");
+            string[] kasutajarida = File.ReadAllLines("../../kontolist.txt");
 
             string uuskasutajarida = kasutajarida[mitmeskasutaja].Substring(0, 10);
 
@@ -26,14 +27,14 @@ namespace Pangaautomaat
             kogus += summa;
 
             kasutajarida[mitmeskasutaja] = uuskasutajarida + " " + kogus.ToString();
-            System.IO.File.WriteAllLines("../../kontolist.txt", kasutajarida);
+            File.WriteAllLines("../../kontolist.txt", kasutajarida);
 
             return true;
         }
 
         public static bool RahaVälja(int summa, int mitmeskasutaja)
         {
-            string[] kasutajarida = System.IO.File.ReadAllLines("../../kontolist.txt");
+            string[] kasutajarida = File.ReadAllLines("../../kontolist.txt");
 
             string uuskasutajarida = kasutajarida[mitmeskasutaja].Substring(0, 10);
 
@@ -47,7 +48,7 @@ namespace Pangaautomaat
             }
 
             kasutajarida[mitmeskasutaja] = uuskasutajarida + " " + kogus.ToString();
-            System.IO.File.WriteAllLines("../../kontolist.txt", kasutajarida);
+            File.WriteAllLines("../../kontolist.txt", kasutajarida);
 
             return true;
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Pangaautomaat
 {
@@ -30,7 +31,7 @@ namespace Pangaautomaat
             }
             kasutajapin = int.Parse(Console.ReadLine());
 
-            System.IO.File.AppendAllText("../../kontolist.txt", kasutajanimi + " " + kasutajapin + Environment.NewLine);
+            File.AppendAllText("../../kontolist.txt", kasutajanimi + " " + kasutajapin + Environment.NewLine);
             return true;
         }
 
@@ -45,7 +46,7 @@ namespace Pangaautomaat
 
             try
             {
-                using (System.IO.StreamReader sr = new System.IO.StreamReader("../../kontolist.txt"))
+                using (StreamReader sr = new StreamReader("../../kontolist.txt"))
                 {
                     string rida;
 
