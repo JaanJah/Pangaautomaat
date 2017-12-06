@@ -19,31 +19,7 @@ namespace Pangaautomaat
                 if (logivõirega == 1)
                 {
                     Konto.Logimine();
-                    while (true)
-                    {
-                        Outer:
-                        Console.WriteLine("Kas te soovite (Valige number))\n1. Võtta raha välja.\n2. Sisestada raha.\n");
-                        int sissevõivälja = int.Parse(Console.ReadLine());
-                        if (sissevõivälja == 1)
-                        {
-                            Console.WriteLine("Sisestage summa mida soovite väljastada: ");
-                            int summa = int.Parse(Console.ReadLine());
-                            //võtab kontojäägilt
-                            return;
-                        }
-                        else if (sissevõivälja == 2)
-                        {
-                            Console.WriteLine("Sisestage summa mida soovite sisestada: ");
-                            int summasisse = int.Parse(Console.ReadLine());
-                            //lisab kontojäägile
-                        }
-                        else
-                        {
-                            Console.WriteLine("Teadmata käsk sisestatud. Proovige uuesti.");
-                            goto Outer;
-                        }
                     }
-                }
                 else if (logivõirega == 2)
                 {
                     Konto.Registreerimine();
@@ -60,6 +36,31 @@ namespace Pangaautomaat
                     else if (YorN == "N")
                     {
                         return;
+                    }
+                }
+                while (true)
+                {
+                    Outer:
+                    Console.WriteLine("Kas te soovite (Valige number))\n1. Võtta raha välja.\n2. Sisestada raha.\n");
+                    int sissevõivälja = int.Parse(Console.ReadLine());
+                    if (sissevõivälja == 1)
+                    {
+                        Console.WriteLine("Sisestage summa mida soovite väljastada: ");
+                        int summa = int.Parse(Console.ReadLine());
+                        PangaFunktsioonid.RahaVälja(summa, Konto.mitmeskasutaja);
+                        return;
+                    }
+                    else if (sissevõivälja == 2)
+                    {
+                        Console.WriteLine("Sisestage summa mida soovite sisestada: ");
+                        int summa = int.Parse(Console.ReadLine());
+                        PangaFunktsioonid.RahaSisse(summa, Konto.mitmeskasutaja);
+                        return;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Teadmata käsk sisestatud. Proovige uuesti.");
+                        goto Outer;
                     }
                 }
             }

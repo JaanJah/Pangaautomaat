@@ -15,9 +15,9 @@ namespace Pangaautomaat
         public static bool Registreerimine()
         {
             ProoviUuesti:
-            Console.WriteLine("Soovisite registreerida!\nSisestage kasutajanimi (Peab olema 6 tähte): ");
+            Console.WriteLine("Soovisite registreerida!\nSisestage kasutajanimi (Peab olema 5 tähte): ");
             kasutajanimi = Console.ReadLine();
-            if (kasutajanimi.Length != 6)
+            if (kasutajanimi.Length != 5)
             {
                 Console.WriteLine("Te ei sisestanud 6 tähelist kasutajanime. Proovige uuesti!");
                 goto ProoviUuesti;
@@ -52,14 +52,14 @@ namespace Pangaautomaat
                     while ((rida = sr.ReadLine()) != null)
                     {
                         mitmeskasutaja++;
-                        if (rida.Substring(0, 6) == kasutajanimi)
+                        if (rida.Substring(0, 5) == kasutajanimi)
                         {
-                            if (rida.Substring(7, 4) == kasutajapin.ToString())
+                            if (rida.Substring(6, 4) == kasutajapin.ToString())
                             {
                                 Console.WriteLine("Sisse logitud");
                                 return true;
                             }
-                            else if (rida.Substring(7, 4) != kasutajapin.ToString())
+                            else if (rida.Substring(6, 4) != kasutajapin.ToString())
                             {
                                 Console.WriteLine("Vale parool.");
                                 return false;
