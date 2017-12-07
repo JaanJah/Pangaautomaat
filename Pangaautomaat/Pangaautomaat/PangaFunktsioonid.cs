@@ -36,7 +36,7 @@ namespace Pangaautomaat
         {
             string[] kasutajarida = File.ReadAllLines("../../kontolist.txt");
 
-            string uuskasutajarida = kasutajarida[mitmeskasutaja].Substring(0, 10);
+            string uuskasutajarida = kasutajarida[mitmeskasutaja - 1].Substring(0, 10);
 
             int kogus = int.Parse(kasutajarida[mitmeskasutaja].Substring(10));
             kogus -= summa;
