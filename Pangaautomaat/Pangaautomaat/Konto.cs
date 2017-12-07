@@ -31,7 +31,7 @@ namespace Pangaautomaat
             }
             kasutajapin = int.Parse(Console.ReadLine());
 
-            File.AppendAllText("../../kontolist.txt", kasutajanimi + " " + kasutajapin + Environment.NewLine);
+            File.AppendAllText("../../kontolist.txt", kasutajanimi + " " + kasutajapin + "0" + Environment.NewLine);
             return true;
         }
 

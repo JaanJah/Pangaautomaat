@@ -26,7 +26,7 @@ namespace Pangaautomaat
             int kogus = int.Parse(kasutajarida[mitmeskasutaja - 1].Substring(10));
             kogus += summa;
 
-            kasutajarida[mitmeskasutaja] = uuskasutajarida + " " + kogus.ToString();
+            kasutajarida[mitmeskasutaja - 1] = uuskasutajarida + " " + kogus.ToString();
             File.WriteAllLines("../../kontolist.txt", kasutajarida);
 
             return true;
@@ -38,7 +38,7 @@ namespace Pangaautomaat
 
             string uuskasutajarida = kasutajarida[mitmeskasutaja - 1].Substring(0, 10);
 
-            int kogus = int.Parse(kasutajarida[mitmeskasutaja].Substring(10));
+            int kogus = int.Parse(kasutajarida[mitmeskasutaja - 1].Substring(10));
             kogus -= summa;
 
             if (kogus < 0)
@@ -47,7 +47,7 @@ namespace Pangaautomaat
                 return false;
             }
 
-            kasutajarida[mitmeskasutaja] = uuskasutajarida + " " + kogus.ToString();
+            kasutajarida[mitmeskasutaja - 1] = uuskasutajarida + " " + kogus.ToString();
             File.WriteAllLines("../../kontolist.txt", kasutajarida);
 
             return true;
